@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+</head>
+<style>
+    body{
+        text-align: center;
+        font-family: 'Share Tech', sans-serif;
+        font-size: 30px;
+        color: white;
+        margin: 0;
+        width: 100vw;
+        height: 100vh;
+        text-shadow: 8px 8px 10px #0000008c;
+        background-color: #343a40;
+        
+    }
+
+    .head{
+        color: azure;
+    }
+    .input{
+        text-align: center;
+        padding-bottom: 15px;
+    }
+    #qr,#no{
+        font-size: 30px;
+        font-family:initial;
+        color: whitesmoke;
+        border-style:ridge;
+        border-width: 4px;
+        border-color:darkgrey;
+        background-color:#0000008c;
+
+    }
+
+    .download,.submit{
+        padding-bottom: 20px;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 15px 25px;
+        font-size: 24px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color:black;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 5px #999;
+    }
+
+    .button:hover {
+        background-color:#0000008c
+    }
+
+    .button:active {
+        background-color:black;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
+
+    .alert {
+    padding: 20px;
+    color: red;
+    }
+
+    .closebtn {
+        color: white;
+        font-weight: bold;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+.closebtn:hover {
+  color: black;
+}
+    
+
+
+</style>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+    <script>
+        let source=null;
+
+        function qrgenerator(){
+            var s=document.getElementById("no").value;
+            var size=s+"x"+s
+            var text=document.getElementById("qr").value;
+            if(s){
+                if (s<30){
+                    msg.style.display="block";
+                    setTimeout(() => {
+                    msg.style.display = "none";
+                }, 2000)
+                }else{
+            var link="https://chart.googleapis.com/chart?cht=qr&chs="+size+"&chl="+text;
+            img.src=link;
+            source=link;
+                }
+        }else{
+            check.style.display="block";
+            setTimeout(() => {
+                    check.style.display = "none";
+                }, 2000)
+        }
+    }
+
+        function download(){
+            if(source){
+                let fn=getFileName(source);
+                saveAs(source,fn);
+            }else{
+                generate.style.display="block";
+                setTimeout(() => {
+                    generate.style.display = "none";
+                }, 2000)
+            }
+        }
+        function getFileName(str){
+                return str.substring(str.lastIndexOf('/')+1);
+        }
+
+    </script>
+    <div class="head">
+        <h1>QR Code Generator</h1>
+    </div>
+    
+    <div class="input">
+        <input type="text" id="qr" placeholder="enter text">
+    </div>
+    <div class="input">
+        <input type="number" id="no" placeholder="enter size">
+    </div>
+    <div class="submit">
+        <button class="button" onclick="qrgenerator()">Generate</button>
+    </div>
+    <div class="download">
+        <button class="button" onclick="download()">Download</button>
+    </div>
+    <div class="img">
+        <img src="" id="img">
+    </div>
+    <div class="alert" id="msg" style="display: none;">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+             Size of the QR Code must be greater than 30
+      </div>
+      <div class="alert" id="check" style="display: none;">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+             Size cannot be empty
+      </div>
+      <div class="alert" id="generate" style="display: none;">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+             Generate the QR Code first
+      </div>
+</body>
+</html>
