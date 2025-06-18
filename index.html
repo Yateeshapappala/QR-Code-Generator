@@ -103,7 +103,7 @@
                     msg.style.display = "none";
                 }, 2000)
                 }else{
-            var link="https://chart.googleapis.com/chart?cht=qr&chs="+size+"&chl="+text;
+            var link = "https://api.qrserver.com/v1/create-qr-code/?data=" + encodeURIComponent(text) + "&size=" + size;
             img.src=link;
             source=link;
                 }
