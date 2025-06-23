@@ -8,11 +8,11 @@ A simple and elegant web application that allows users to generate QR codes from
 
 ## ✨ Features
 
-- ✅ Generate QR codes for any text or URL
-- 🎯 Customizable size input
-- 📥 One-click QR code download
-- 🎨 Clean, responsive, and dark-themed UI
-- ⚡ No backend required – fully client-side
+- Generate QR codes for any text or URL
+- Customizable size input
+- One-click QR code download
+- Clean, responsive, and dark-themed UI
+- No backend required – fully client-side
 
 ---
 
